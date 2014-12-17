@@ -206,16 +206,18 @@ abstract class ZabbixApiAbstract
 
         // generate ID
         $this->id = number_format(microtime(true), 4, '', '');
-
         // build request array
+        $params['userData']=true;
         $this->request = array(
             'jsonrpc' => '2.0',
             'method'  => $method,
             'params'  => $params,
-            'auth'    => ($auth ? $this->auth : ''),
+            //'auth'    => ($auth ? $this->auth : ''),
             'id'      => $this->id
         );
-
+        if ($method != "user.login"){
+            $this->request['auth']  = ($auth ? $this->auth->sessionid : '');
+        }
         // encode request array
         $this->requestEncoded = json_encode($this->request);
 
@@ -229,7 +231,6 @@ abstract class ZabbixApiAbstract
             'header'  => 'Content-type: application/json-rpc'."\r\n",
             'content' => $this->requestEncoded
         )));
-
         // get file handler
         $fileHandler = fopen($this->getApiUrl(), 'rb', false, $streamContext);
         if(!$fileHandler)
@@ -237,7 +238,6 @@ abstract class ZabbixApiAbstract
 
         // get response
         $this->response = @stream_get_contents($fileHandler);
-
         // debug logging
         if($this->printCommunication)
             echo $this->response."\n";
@@ -248,7 +248,7 @@ abstract class ZabbixApiAbstract
 
         // decode response
         $this->responseDecoded = json_decode($this->response);
-
+        //var_dump($this->responseDecoded);die();
         // validate response
         if(array_key_exists('error', $this->responseDecoded))
             throw new Exception('API error '.$this->responseDecoded->error->code.': '.$this->responseDecoded->error->data);
@@ -377,6 +377,7 @@ abstract class ZabbixApiAbstract
     {
         $params = $this->getRequestParamsArray($params);
         $this->auth = $this->request('user.login', $params, $arrayKeyProperty, FALSE);
+        
         return $this->auth;
     }
 

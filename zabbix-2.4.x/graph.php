@@ -408,7 +408,8 @@
         </script>
 
         <div align="center" style='font-size:12px;'>
-            <a href="https://github.com/spide4k/zatree" target="_blank">Zatree</a> version 1.0.1 for zabbix 2.2.x, 技术支持：
+            <a href="https://github.com/spide4k/zatree" target="_blank">Zatree</a> version 1.0.2 for zabbix 2.4.x, 技术支持：
+            <a href="http://www.ly.com" target="_blank">@feijilei</a>
             <a href="http://weibo.com/spider4k" target="_blank">@南非蜘蛛</a>
             <a href="http://weibo.com/chinahanna" target="_blank">@hanna</a>
             <a href="http://weibo.com/678236656" target="_blank">@lijian</a> ，
