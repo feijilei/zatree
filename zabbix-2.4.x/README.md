@@ -4,13 +4,13 @@ Zatree for zabbix 2.4.x 安装
 
 1：下载文件
 
-git clone https://github.com/spide4k/zatree.git zatree
+git clone https://github.com/feijilei/zatree.git zatree
 
 2：复制相关文件
 
-假如zabbix web目录位置在/var/www/zabbix,定义zabbix目录
+假如zabbix web目录位置在/var/www/html/zabbix,定义zabbix目录
 
-ZABBIX_PATH=/var/www/zabbix
+ZABBIX_PATH=/var/www/html/zabbix
 
 复制相关文件和目录
 
@@ -20,15 +20,15 @@ cd $ZABBIX_PATH/zatree/addfile
 
 cp -f CLineGraphDraw_Zabbix.php CGraphDraw_Zabbix.php CImageTextTable_Zabbix.php $ZABBIX_PATH/include/classes/graphdraw/
 
+cp -f CApiServiceFactory.php  $ZABBIX_PATH/include/classes/api/
+
 cp -f zabbix.php zabbix_chart.php $ZABBIX_PATH/
 
-cp -f CItemValue.php $ZABBIX_PATH/api/classes/
+cp -f CItemValue.php $ZABBIX_PATH/include/classes/api/services/
 
 cp -f menu.inc.php $ZABBIX_PATH/include/
 
 cp -f main.js $ZABBIX_PATH/js/
-
-cp -f API.php $ZABBIX_PATH/include/classes/api/
 
 
 3：支持web interface,修改配置文件
