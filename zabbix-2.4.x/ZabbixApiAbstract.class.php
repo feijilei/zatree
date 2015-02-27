@@ -216,7 +216,8 @@ abstract class ZabbixApiAbstract
             'id'      => $this->id
         );
         if ($method != "user.login"){
-            $this->request['auth']  = ($auth ? $this->auth->sessionid : '');
+            //$this->request['auth']  = ($auth ? $this->auth->sessionid : '');
+            $this->request['auth']  = ($auth ? $_COOKIE['zbx_sessionid'] : '');
         }
         // encode request array
         $this->requestEncoded = json_encode($this->request);
