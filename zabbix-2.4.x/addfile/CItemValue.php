@@ -22,7 +22,7 @@
 /**
  * @package API
  */
-class CItemValue extends CZBXAPI {
+class CItemValue extends CApiService {
 
     public function GetItemValues($itemInfo) {
 
